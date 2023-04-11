@@ -39,9 +39,3 @@ while True:
 
         elif len(user_objects) == counter:
             print('no matching user found in the database')
-
-
-
-
-
-
