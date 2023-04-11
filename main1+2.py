@@ -30,7 +30,18 @@ while True:
         print('wrong input ,lets try again!')
         continue
 
-    for user in user_objects:
+    counter = 0                              # counter for print if no matching user
+    for user in user_objects:                # for checking
+        counter += 1
         if user_input.lower() in user.name.lower().split():
-            print(f'there is user name in the databas {user.name}')
+            print(f'Matching user found in the database {user.name}')
+            counter = 0
+
+        elif len(user_objects) == counter:
+            print('no matching user found in the database')
+
+
+
+
+
 
