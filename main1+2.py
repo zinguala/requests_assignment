@@ -35,6 +35,7 @@ while True:
         counter += 1
         if user_input.lower() in user.name.lower().split():
             print(f'Matching user found in the database {user.name}')
+            print(user)
             counter = 0
 
         elif len(user_objects) == counter:
