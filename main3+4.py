@@ -1,8 +1,8 @@
-import requests                # for downloading the users list with .get(url) and .jason()
+import requests                                            # for downloading the users list with .get(url) and .jason()
 
 
 class SpeedUser:
-    def __init__(self, d):     # input for SpeedUser's class
+    def __init__(self, d):                                                                # input for SpeedUser's class
         self.name = d['name']
         self.username = d['username']
         self.address = d['address']
@@ -21,10 +21,10 @@ def nearestuser(input_lat, objects):                                 # near user
     counter = 0                              # counter for print the nearest user and lat  if no equal user's lat found
     for user in objects:                                           # for checking all SpeedUser objects for nearest lat
         counter += 1                                               # counter 1 up
-        if input_lat == user.lat():                        # if input lat = user checked lat print the lat and the user
+        if input_lat == user.lat():                         # if input lat = user checked lat print the lat and the user
             print(f'Matching lat found in the database {user.lat()}')
             print(user)
-            counter = 1            # if matching lat found reset the counter for not printing 'no matching lat found'
+            counter = 1               # if matching lat found reset the counter for not printing 'no matching lat found'
 
         elif abs(user_input - user.lat()) < abs(user_input - nearest_lat):  # if no matching lat found check the nearest
             nearest_lat = user.lat()                 # save the current lat if he is more close than the saved user lat
@@ -36,28 +36,28 @@ def nearestuser(input_lat, objects):                                 # near user
         print(nearest_user)
 
 
-user_objects = []    # for storing list of our SpeedUser objects.
-i = 0          # counter for adding number to the url to go over all the users one by one
+user_objects = []                                                           # for storing list of our SpeedUser objects.
+i = 0                                        # counter for adding number to the url to go over all the users one by one
 while True:
-    i += 1          # start from one, and 1 up every round
-    res = requests.get('https://jsonplaceholder.typicode.com/users/' + str(i))  # request for download the user data
-    downloaded_user_dict = res.json()      # to store the dictionary of the user data
-    if downloaded_user_dict:       # if downloaded_user_dict contains data --> true
-        user_obj = SpeedUser(downloaded_user_dict)     # if true store SpeedUser object of the user
-        user_objects.append(user_obj)                  # if true add the object we just stored to the objects list
+    i += 1                                                                       # start from one, and 1 up every round
+    res = requests.get('https://jsonplaceholder.typicode.com/users/' + str(i))     # request for download the user data
+    downloaded_user_dict = res.json()                                        # to store the dictionary of the user data
+    if downloaded_user_dict:                                           # if downloaded_user_dict contains data --> true
+        user_obj = SpeedUser(downloaded_user_dict)                         # if true store SpeedUser object of the user
+        user_objects.append(user_obj)                       # if true add the object we just stored to the objects list
     else:
-        break            # if the downloaded_user_dict is empty--->false and stop the while with break
+        break                             # if the downloaded_user_dict is empty--->false and stop the while with break
 
-while True:            # while for continues checking until the user want to stop checking
-    try:               # input the name we want to check
+while True:                                          # while for continues checking until the user want to stop checking
+    try:                                                                              # input the name we want to check
         user_input = float((input("enter lat to check if exists in database : ")))
-    except ValueError:                 # exception for value check, for wrong input try again
+    except ValueError:                                           # exception for value check, for wrong input try again
         print('wrong input ,lets try again!')
         continue
 
-    nearestuser(user_input, user_objects)    # executing the lat check with user input and list of all objects
+    nearestuser(user_input, user_objects)              # executing the lat check with user input and list of all objects
 
-    while True:  # while for input if players want to check again
+    while True:                                                         # while for input if players want to check again
         recheck = input('want to check again? y/n : ')
         if recheck in ['y', 'n']:
             break
